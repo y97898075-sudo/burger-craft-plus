@@ -7,7 +7,7 @@ import { combos } from "@/data/combos";
 
 export interface CartItem {
   id: string;
-  type: "burger" | "combo";
+  type: "burger" | "combo" | "drink";
   name: string;
   price: number;
   details?: string;
