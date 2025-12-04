@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Hero } from "@/components/Hero";
 import { BurgerBuilder } from "@/components/BurgerBuilder";
 import { Combos } from "@/components/Combos";
+import { Drinks } from "@/components/Drinks";
 import { Promotions } from "@/components/Promotions";
 import { Gallery } from "@/components/Gallery";
 import { WhatsAppButton } from "@/components/WhatsAppButton";
@@ -9,6 +10,7 @@ import { Cart, type CartItem } from "@/components/Cart";
 import { Footer } from "@/components/Footer";
 import { ingredients } from "@/data/ingredients";
 import { combos } from "@/data/combos";
+import { type Drink } from "@/data/drinks";
 import { toast } from "@/hooks/use-toast";
 
 const WHATSAPP_NUMBER = "5511999999999"; // Replace with actual number
@@ -59,6 +61,22 @@ const Index = () => {
     });
   };
 
+  const handleAddDrinkToCart = (drink: Drink) => {
+    const newItem: CartItem = {
+      id: `drink-${Date.now()}`,
+      type: "drink",
+      name: drink.name,
+      price: drink.price,
+      details: drink.size || "",
+    };
+
+    setCartItems((prev) => [...prev, newItem]);
+    toast({
+      title: "Adicionado ao carrinho! 🥤",
+      description: `${drink.name} foi adicionado`,
+    });
+  };
+
   const handleRemoveItem = (index: number) => {
     setCartItems((prev) => prev.filter((_, i) => i !== index));
   };
@@ -82,6 +100,7 @@ const Index = () => {
       <Hero />
       <BurgerBuilder onAddToCart={handleAddBurgerToCart} />
       <Combos onAddToCart={handleAddComboToCart} />
+      <Drinks onAddToCart={handleAddDrinkToCart} />
       <Promotions />
       <Gallery />
       <Footer />
