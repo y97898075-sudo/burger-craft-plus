@@ -43,7 +43,12 @@ export function Hero() {
               <Flame className="w-5 h-5" />
               Monte seu Burger
             </Button>
-            <Button variant="outline" size="xl" className="border-primary/50 text-primary hover:bg-primary/10">
+            <Button 
+              variant="outline" 
+              size="xl" 
+              className="border-primary/50 text-primary hover:bg-primary/10"
+              onClick={() => document.getElementById("combos")?.scrollIntoView({ behavior: "smooth" })}
+            >
               Ver Cardápio
             </Button>
           </div>
